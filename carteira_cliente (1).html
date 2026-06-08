@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carteira de Investimentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; padding: 40px 20px 60px; }
+  .page { max-width: 680px; margin: 0 auto; }
+  .header { margin-bottom: 32px; }
+  .header-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #888; text-transform: uppercase; margin-bottom: 6px; }
+  .header-title { font-size: 26px; font-weight: 600; color: #111; margin-bottom: 4px; }
+  .header-sub { font-size: 14px; color: #888; }
+  .strip-wrap { margin-bottom: 28px; }
+  .total-strip { display: flex; border-radius: 8px; overflow: hidden; height: 10px; gap: 2px; }
+  .strip-seg { height: 100%; border-radius: 2px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #666; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .bloco { background: #fff; border-radius: 16px; border: 1px solid #ebebeb; padding: 20px 24px; margin-bottom: 12px; }
+  .bloco-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .bloco-titulo { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #111; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .bloco-badge { font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 99px; }
+  .ativo-wrap { border-top: 1px solid #f0f0f0; }
+  .ativo-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0 8px; cursor: pointer; user-select: none; }
+  .ativo-row:hover .ativo-nome { color: #111; }
+  .ativo-left { display: flex; align-items: center; gap: 10px; }
+  .chevron { width: 20px; height: 20px; border-radius: 50%; background: #f5f5f3; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #aaa; transition: transform 0.2s, background 0.15s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(90deg); background: #ebebeb; }
+  .ativo-nome { font-size: 14px; color: #555; font-weight: 400; transition: color 0.15s; }
+  .ativo-right { display: flex; align-items: center; gap: 12px; }
+  .ativo-pct { font-size: 14px; font-weight: 600; color: #111; min-width: 32px; text-align: right; }
+  .bar-wrap { width: 100%; height: 4px; background: #f0f0f0; border-radius: 99px; margin-bottom: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; }
+  .descricao { font-size: 13px; color: #555; line-height: 1.65; background: #fafaf9; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; display: none; border-left: 3px solid #e0e0e0; }
+  .descricao.open { display: block; }
+  .footer { font-size: 12px; color: #bbb; margin-top: 20px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-label">Relatório de alocação</div>
+    <div class="header-title">Sua carteira de investimentos</div>
+    <div class="header-sub">Toque em cada ativo para entender o que é</div>
+  </div>
+
+  <div class="strip-wrap">
+    <div class="total-strip">
+      <div class="strip-seg" style="width:5%;background:#D4537E;"></div>
+      <div class="strip-seg" style="width:30%;background:#7F77DD;"></div>
+      <div class="strip-seg" style="width:10%;background:#EF9F27;"></div>
+      <div class="strip-seg" style="width:30%;background:#1D9E75;"></div>
+      <div class="strip-seg" style="width:45%;background:#378ADD;"></div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#D4537E;"></span>Multimercado 5%</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#7F77DD;"></span>Renda Variável 30%</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#EF9F27;"></span>Prefixado 10%</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#1D9E75;"></span>Inflação 30%</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#378ADD;"></span>Pós-fixado 45%</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-header">
+      <div class="bloco-titulo"><div class="dot" style="background:#D4537E;"></div>Multimercado</div>
+      <span class="bloco-badge" style="background:#FBEAF0;color:#993556;">5%</span>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('kapitalo')">
+        <div class="ativo-left"><span class="chevron" id="chevron-kapitalo">›</span><span class="ativo-nome">Kapitalo K10</span></div>
+        <div class="ativo-right"><span class="ativo-pct">5%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:5%;background:#D4537E;"></div></div>
+      <div class="descricao" id="desc-kapitalo">Fundo multimercado gerido pela Kapitalo, uma das gestoras independentes mais respeitadas do Brasil. Investe em diversas classes de ativos — juros, câmbio, ações e commodities — buscando retorno acima do CDI com gestão ativa de risco. Indicado para diversificar a carteira além da renda fixa tradicional.</div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-header">
+      <div class="bloco-titulo"><div class="dot" style="background:#7F77DD;"></div>Renda Variável</div>
+      <span class="bloco-badge" style="background:#EEEDFE;color:#534AB7;">30%</span>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('wizc3')">
+        <div class="ativo-left"><span class="chevron" id="chevron-wizc3">›</span><span class="ativo-nome">WIZC3</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#7F77DD;"></div></div>
+      <div class="descricao" id="desc-wizc3">Ações da Wiz Soluções, empresa de distribuição de seguros e serviços financeiros. Atua como parceira de grandes bancos e varejistas na oferta de produtos de proteção. Exposição ao crescimento do mercado de seguros no Brasil, setor ainda com baixa penetração comparado a outros países.</div>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('klbn4')">
+        <div class="ativo-left"><span class="chevron" id="chevron-klbn4">›</span><span class="ativo-nome">KLBN4</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#7F77DD;"></div></div>
+      <div class="descricao" id="desc-klbn4">Ações preferenciais da Klabin, maior produtora e exportadora de papel e embalagens do Brasil. Empresa com ativos florestais relevantes, geração de caixa consistente e boas perspectivas de exportação. Considerada uma empresa de qualidade com histórico sólido de dividendos.</div>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('bbas3')">
+        <div class="ativo-left"><span class="chevron" id="chevron-bbas3">›</span><span class="ativo-nome">BBAS3</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#7F77DD;"></div></div>
+      <div class="descricao" id="desc-bbas3">Ações do Banco do Brasil, um dos maiores bancos do país e líder no crédito rural. Combina solidez de banco público com eficiência operacional crescente. Conhecido por distribuição generosa de dividendos e negociado a múltiplos historicamente atrativos.</div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-header">
+      <div class="bloco-titulo"><div class="dot" style="background:#EF9F27;"></div>Prefixado</div>
+      <span class="bloco-badge" style="background:#FAEEDA;color:#854F0B;">10%</span>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('pre2032')">
+        <div class="ativo-left"><span class="chevron" id="chevron-pre2032">›</span><span class="ativo-nome">Tesouro Prefixado 2032</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#EF9F27;"></div></div>
+      <div class="descricao" id="desc-pre2032">Título público federal com taxa de juros travada no momento da compra, independente do que acontecer com a Selic no futuro. Ideal para quem acredita que os juros vão cair — pois o rendimento já está garantido. Vencimento em 2032, com possibilidade de resgate antecipado pelo mercado secundário.</div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-header">
+      <div class="bloco-titulo"><div class="dot" style="background:#1D9E75;"></div>Inflação</div>
+      <span class="bloco-badge" style="background:#E1F5EE;color:#0F6E56;">30%</span>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('longo2040')">
+        <div class="ativo-left"><span class="chevron" id="chevron-longo2040">›</span><span class="ativo-nome">Título Longo 2040</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#1D9E75;"></div></div>
+      <div class="descricao" id="desc-longo2040">Tesouro IPCA+ com vencimento em 2040. Paga a inflação (IPCA) mais uma taxa prefixada ao ano. Por ter prazo longo, tem maior potencial de valorização caso os juros reais caiam, mas também oscila mais no curto prazo. Funciona como uma âncora de proteção do poder de compra no longo prazo.</div>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('medio2032')">
+        <div class="ativo-left"><span class="chevron" id="chevron-medio2032">›</span><span class="ativo-nome">Título Médio 2032</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#1D9E75;"></div></div>
+      <div class="descricao" id="desc-medio2032">Tesouro IPCA+ com vencimento em 2032. Mesma lógica do título longo — garante a inflação mais uma taxa real — mas com prazo menor, o que reduz a oscilação. Boa opção para quem quer proteção inflacionária com um horizonte mais próximo.</div>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('juro11')">
+        <div class="ativo-left"><span class="chevron" id="chevron-juro11">›</span><span class="ativo-nome">JURO11</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#1D9E75;"></div></div>
+      <div class="descricao" id="desc-juro11">Fundo de Investimento em Infraestrutura (FI-Infra) listado em bolsa, que investe em debêntures incentivadas atreladas ao IPCA. Isento de IR para pessoa física. Combina proteção contra inflação com benefício tributário e exposição a projetos de infraestrutura no Brasil, com liquidez diária em bolsa.</div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-header">
+      <div class="bloco-titulo"><div class="dot" style="background:#378ADD;"></div>Pós-fixado</div>
+      <span class="bloco-badge" style="background:#E6F1FB;color:#185FA5;">45%</span>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('cdblci')">
+        <div class="ativo-left"><span class="chevron" id="chevron-cdblci">›</span><span class="ativo-nome">CDB / LCI / LCA 1 ano</span></div>
+        <div class="ativo-right"><span class="ativo-pct">15%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:15%;background:#378ADD;"></div></div>
+      <div class="descricao" id="desc-cdblci">Títulos de renda fixa bancária com vencimento de 1 ano, atrelados ao CDI. CDB tem incidência de IR (17,5% no prazo de 1 ano); LCI e LCA são isentos de IR para pessoa física. Todos contam com a garantia do FGC até R$ 250 mil por instituição. Alta previsibilidade e segurança.</div>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('bnp')">
+        <div class="ativo-left"><span class="chevron" id="chevron-bnp">›</span><span class="ativo-nome">BNP Paribas Rubi</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#378ADD;"></div></div>
+      <div class="descricao" id="desc-bnp">Fundo de renda fixa conservador gerido pelo BNP Paribas, um dos maiores bancos do mundo. Investe majoritariamente em títulos públicos e ativos de crédito de alta qualidade, com rendimento próximo ao CDI. Perfil conservador, ideal para a parcela de reserva da carteira.</div>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('xpdeb')">
+        <div class="ativo-left"><span class="chevron" id="chevron-xpdeb">›</span><span class="ativo-nome">XP Debêntures</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#378ADD;"></div></div>
+      <div class="descricao" id="desc-xpdeb">Fundo que investe em debêntures corporativas, títulos de dívida emitidos por empresas privadas. Busca retorno acima do CDI através de crédito privado selecionado pela equipe da XP. Oferece diversificação em emissores e setores, com liquidez superior à compra direta de debêntures.</div>
+    </div>
+    <div class="ativo-wrap">
+      <div class="ativo-row" onclick="toggle('mapfre')">
+        <div class="ativo-left"><span class="chevron" id="chevron-mapfre">›</span><span class="ativo-nome">Mapfre Confianza</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#378ADD;"></div></div>
+      <div class="descricao" id="desc-mapfre">Fundo de renda fixa da Mapfre, grupo segurador de origem espanhola com grande presença no Brasil. Investe em ativos conservadores atrelados ao CDI, com gestão focada em preservação de capital. Boa opção para composição da parcela estável da carteira.</div>
+    </div>
+  </div>
+
+  <div class="footer">Os percentuais de cada ativo representam a participação individual na carteira total.</div>
+</div>
+
+<script>
+function toggle(id) {
+  const desc = document.getElementById('desc-' + id);
+  const chevron = document.getElementById('chevron-' + id);
+  const isOpen = desc.classList.contains('open');
+  desc.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
