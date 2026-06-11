@@ -34,6 +34,7 @@
   .ativo-nome { font-size: 14px; color: #555; font-weight: 400; transition: color 0.15s; }
   .ativo-right { display: flex; align-items: center; gap: 12px; }
   .ativo-pct { font-size: 14px; font-weight: 600; color: #111; min-width: 32px; text-align: right; }
+  .ativo-valor { font-size: 12px; color: #999; min-width: 70px; text-align: right; }
   .bar-wrap { width: 100%; height: 4px; background: #f0f0f0; border-radius: 99px; margin-bottom: 4px; overflow: hidden; }
   .bar-fill { height: 100%; border-radius: 99px; }
   .descricao { font-size: 13px; color: #555; line-height: 1.65; background: #fafaf9; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; display: none; border-left: 3px solid #e0e0e0; }
@@ -74,7 +75,7 @@
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('kapitalo')">
         <div class="ativo-left"><span class="chevron" id="chevron-kapitalo">›</span><span class="ativo-nome">Kapitalo K10</span></div>
-        <div class="ativo-right"><span class="ativo-pct">5%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">5%</span><span class="ativo-valor">R$ 15.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:5%;background:#D4537E;"></div></div>
       <div class="descricao" id="desc-kapitalo">Fundo multimercado gerido pela Kapitalo, uma das gestoras independentes mais respeitadas do Brasil. Investe em diversas classes de ativos — juros, câmbio, ações e commodities — buscando retorno acima do CDI com gestão ativa de risco. Indicado para diversificar a carteira além da renda fixa tradicional.</div>
@@ -89,7 +90,7 @@
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('wizc3')">
         <div class="ativo-left"><span class="chevron" id="chevron-wizc3">›</span><span class="ativo-nome">WIZC3</span></div>
-        <div class="ativo-right"><span class="ativo-pct">3,33%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">3,33%</span><span class="ativo-valor">R$ 9.990</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:3.33%;background:#7F77DD;"></div></div>
       <div class="descricao" id="desc-wizc3">Ações da Wiz Soluções, empresa de distribuição de seguros e serviços financeiros. Atua como parceira de grandes bancos e varejistas na oferta de produtos de proteção. Exposição ao crescimento do mercado de seguros no Brasil, setor ainda com baixa penetração comparado a outros países.</div>
@@ -97,7 +98,7 @@
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('klbn4')">
         <div class="ativo-left"><span class="chevron" id="chevron-klbn4">›</span><span class="ativo-nome">KLBN4</span></div>
-        <div class="ativo-right"><span class="ativo-pct">3,33%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">3,33%</span><span class="ativo-valor">R$ 9.990</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:3.33%;background:#7F77DD;"></div></div>
       <div class="descricao" id="desc-klbn4">Ações preferenciais da Klabin, maior produtora e exportadora de papel e embalagens do Brasil. Empresa com ativos florestais relevantes, geração de caixa consistente e boas perspectivas de exportação. Considerada uma empresa de qualidade com histórico sólido de dividendos.</div>
@@ -105,7 +106,7 @@
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('bbas3')">
         <div class="ativo-left"><span class="chevron" id="chevron-bbas3">›</span><span class="ativo-nome">BBAS3</span></div>
-        <div class="ativo-right"><span class="ativo-pct">3,33%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">3,33%</span><span class="ativo-valor">R$ 9.990</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:3.33%;background:#7F77DD;"></div></div>
       <div class="descricao" id="desc-bbas3">Ações do Banco do Brasil, um dos maiores bancos do país e líder no crédito rural. Combina solidez de banco público com eficiência operacional crescente. Conhecido por distribuição generosa de dividendos e negociado a múltiplos historicamente atrativos.</div>
@@ -119,11 +120,11 @@
     </div>
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('pre2032')">
-        <div class="ativo-left"><span class="chevron" id="chevron-pre2032">›</span><span class="ativo-nome">Tesouro Prefixado 2032</span></div>
-        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+        <div class="ativo-left"><span class="chevron" id="chevron-pre2032">›</span><span class="ativo-nome">IDKA11</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span><span class="ativo-valor">R$ 30.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#EF9F27;"></div></div>
-      <div class="descricao" id="desc-pre2032">Título público federal com taxa de juros travada no momento da compra, independente do que acontecer com a Selic no futuro. Ideal para quem acredita que os juros vão cair — pois o rendimento já está garantido. Vencimento em 2032, com possibilidade de resgate antecipado pelo mercado secundário.</div>
+      <div class="descricao" id="desc-pre2032">ETF que replica o índice IDKA, composto por títulos públicos prefixados (LTN). Negociado em bolsa, com taxa de juros travada e liquidez diária. Ideal para quem acredita em queda de juros, pois o rendimento já está garantido pela taxa contratada.</div>
     </div>
   </div>
 
@@ -134,24 +135,24 @@
     </div>
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('longo2040')">
-        <div class="ativo-left"><span class="chevron" id="chevron-longo2040">›</span><span class="ativo-nome">Título Longo 2040</span></div>
-        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+        <div class="ativo-left"><span class="chevron" id="chevron-longo2040">›</span><span class="ativo-nome">IMAB11</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span><span class="ativo-valor">R$ 30.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#1D9E75;"></div></div>
-      <div class="descricao" id="desc-longo2040">Tesouro IPCA+ com vencimento em 2040. Paga a inflação (IPCA) mais uma taxa prefixada ao ano. Por ter prazo longo, tem maior potencial de valorização caso os juros reais caiam, mas também oscila mais no curto prazo. Funciona como uma âncora de proteção do poder de compra no longo prazo.</div>
+      <div class="descricao" id="desc-longo2040">ETF que replica o índice IMA-B, composto por títulos públicos atrelados ao IPCA (Tesouro IPCA+) de diversos vencimentos. Negociado em bolsa com liquidez diária. Funciona como uma âncora de proteção do poder de compra no longo prazo, com maior potencial de valorização caso os juros reais caiam.</div>
     </div>
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('medio2032')">
-        <div class="ativo-left"><span class="chevron" id="chevron-medio2032">›</span><span class="ativo-nome">Título Médio 2032</span></div>
-        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+        <div class="ativo-left"><span class="chevron" id="chevron-medio2032">›</span><span class="ativo-nome">B5P211</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span><span class="ativo-valor">R$ 30.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#1D9E75;"></div></div>
-      <div class="descricao" id="desc-medio2032">Tesouro IPCA+ com vencimento em 2032. Mesma lógica do título longo — garante a inflação mais uma taxa real — mas com prazo menor, o que reduz a oscilação. Boa opção para quem quer proteção inflacionária com um horizonte mais próximo.</div>
+      <div class="descricao" id="desc-medio2032">ETF que replica o índice IMA-B 5, composto por títulos públicos atrelados ao IPCA com vencimento de até 5 anos. Negociado em bolsa com liquidez diária. Mesma lógica de proteção contra a inflação, com prazo mais curto que reduz a oscilação em relação a títulos mais longos.</div>
     </div>
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('juro11')">
         <div class="ativo-left"><span class="chevron" id="chevron-juro11">›</span><span class="ativo-nome">JURO11</span></div>
-        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span><span class="ativo-valor">R$ 30.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#1D9E75;"></div></div>
       <div class="descricao" id="desc-juro11">Fundo de Investimento em Infraestrutura (FI-Infra) listado em bolsa, que investe em debêntures incentivadas atreladas ao IPCA. Isento de IR para pessoa física. Combina proteção contra inflação com benefício tributário e exposição a projetos de infraestrutura no Brasil, com liquidez diária em bolsa.</div>
@@ -165,16 +166,16 @@
     </div>
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('cdblci')">
-        <div class="ativo-left"><span class="chevron" id="chevron-cdblci">›</span><span class="ativo-nome">CDB / LCI / LCA 1 ano</span></div>
-        <div class="ativo-right"><span class="ativo-pct">15%</span></div>
+        <div class="ativo-left"><span class="chevron" id="chevron-cdblci">›</span><span class="ativo-nome">LCA BTG Pactual 1 ano</span></div>
+        <div class="ativo-right"><span class="ativo-pct">15%</span><span class="ativo-valor">R$ 45.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:15%;background:#378ADD;"></div></div>
-      <div class="descricao" id="desc-cdblci">Títulos de renda fixa bancária com vencimento de 1 ano, atrelados ao CDI. CDB tem incidência de IR (17,5% no prazo de 1 ano); LCI e LCA são isentos de IR para pessoa física. Todos contam com a garantia do FGC até R$ 250 mil por instituição. Alta previsibilidade e segurança.</div>
+      <div class="descricao" id="desc-cdblci">Letra de Crédito do Agronegócio emitida pelo BTG Pactual, com vencimento de 1 ano e rentabilidade atrelada ao CDI. Isenta de Imposto de Renda para pessoa física. Conta com a garantia do FGC até R$ 250 mil por instituição. Alta previsibilidade e segurança.</div>
     </div>
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('bnp')">
         <div class="ativo-left"><span class="chevron" id="chevron-bnp">›</span><span class="ativo-nome">BNP Paribas Rubi</span></div>
-        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span><span class="ativo-valor">R$ 30.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#378ADD;"></div></div>
       <div class="descricao" id="desc-bnp">Fundo de renda fixa conservador gerido pelo BNP Paribas, um dos maiores bancos do mundo. Investe majoritariamente em títulos públicos e ativos de crédito de alta qualidade, com rendimento próximo ao CDI. Perfil conservador, ideal para a parcela de reserva da carteira.</div>
@@ -182,7 +183,7 @@
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('xpdeb')">
         <div class="ativo-left"><span class="chevron" id="chevron-xpdeb">›</span><span class="ativo-nome">XP Debêntures</span></div>
-        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span><span class="ativo-valor">R$ 30.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#378ADD;"></div></div>
       <div class="descricao" id="desc-xpdeb">Fundo que investe em debêntures corporativas, títulos de dívida emitidos por empresas privadas. Busca retorno acima do CDI através de crédito privado selecionado pela equipe da XP. Oferece diversificação em emissores e setores, com liquidez superior à compra direta de debêntures.</div>
@@ -190,7 +191,7 @@
     <div class="ativo-wrap">
       <div class="ativo-row" onclick="toggle('mapfre')">
         <div class="ativo-left"><span class="chevron" id="chevron-mapfre">›</span><span class="ativo-nome">Mapfre Confianza</span></div>
-        <div class="ativo-right"><span class="ativo-pct">10%</span></div>
+        <div class="ativo-right"><span class="ativo-pct">10%</span><span class="ativo-valor">R$ 30.000</span></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#378ADD;"></div></div>
       <div class="descricao" id="desc-mapfre">Fundo de renda fixa da Mapfre, grupo segurador de origem espanhola com grande presença no Brasil. Investe em ativos conservadores atrelados ao CDI, com gestão focada em preservação de capital. Boa opção para composição da parcela estável da carteira.</div>
